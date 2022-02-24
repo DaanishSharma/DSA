@@ -1,0 +1,37 @@
+// https://www.interviewbit.com/problems/rotated-sorted-array-search/
+
+int b_s(const vector<int> &A, int B,int l,int r){
+    int n = A.size();
+    int mid;
+    if(r>l){
+        mid = l + (r-l)/2;
+        if(A[mid]==B){
+            return mid;
+        }
+        if(A[l]<A[r]){
+            // sorted subarray
+            // binary search A[l] to A[r]
+            if(A[mid]>B){
+                return b_s(A,B,l,mid-1);
+            }
+            else{
+                return b_s(A,B,mid+1,r);
+            }
+        }
+        else{
+            // unsorted
+            // see A[l] to A[mid] and A[mid+1] to A[r]
+            int a = b_s(A,B,l,mid);
+            int b = b_s(A,B,mid+1,r);
+            if(a!=-1){
+                return a;
+            } 
+            return b;
+        }
+    }
+    return -1; 
+}
+int Solution::search(const vector<int> &A, int B) {
+    
+    return b_s(A,B,0,A.size()-1);
+}
