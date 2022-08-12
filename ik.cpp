@@ -1,3 +1,4 @@
+// https://codingcompetitions.withgoogle.com/kickstart/round/00000000008f4332/0000000000943934
 #include <bits/stdc++.h>
 using namespace std;
 int dp(int i,int p,int cost,string s,set<string> forbidden_orders,vector<int>pen){
